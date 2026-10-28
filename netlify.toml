@@ -1,0 +1,11 @@
+# The site is a static app that lives in the Spacyfy/ folder — no build step needed.
+[build]
+  publish = "Spacyfy"
+  command = ""
+  functions = "netlify/functions"
+
+# Always fetch the latest service worker so app updates reach users.
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"

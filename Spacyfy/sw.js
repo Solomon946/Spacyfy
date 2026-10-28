@@ -1,13 +1,13 @@
 
-const CACHE_NAME = "wavelength-v2";
+const CACHE_NAME = "wavelength-v3";
 
 const APP_FILES = [
   "./",
   "./index.html",
-  "./styles.css",
-  "./app.js",
+  "./css/styles.css",
+  "./js/app.js",
   "./manifest.json",
-  "./icon.svg"
+  "./assets/icon.svg"
 ];
 
 self.addEventListener("install", (event) => {
