@@ -8,6 +8,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="assets/icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css" integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg==" crossorigin="anonymous" referrerpolicy="no-referrer">
 <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -41,9 +42,9 @@
   <div class="now"><div class="cv" id="tc"><div class="ph">♪</div></div><div class="mt"><b id="tt">Nothing playing</b><span id="ta">Pick a track to start</span></div></div>
   <div class="ctl">
     <button data-a="shuffle" id="shf" aria-label="Shuffle" aria-pressed="false">Shuffle</button>
-    <button data-a="prev" aria-label="Previous">⏮</button>
-    <button data-a="play" id="pp" class="pp" aria-label="Play">▶</button>
-    <button data-a="next" aria-label="Next">⏭</button>
+    <button data-a="prev" aria-label="Previous"><i class="fa-solid fa-backward-step"></i></button>
+    <button data-a="play" id="pp" class="pp" aria-label="Play"><i class="fa-solid fa-play"></i></button>
+    <button data-a="next" aria-label="Next"><i class="fa-solid fa-forward-step"></i></button>
     <button data-a="repeat" id="rep" aria-label="Repeat off">Repeat</button>
   </div>
   <div class="seekrow"><span id="cu">0:00</span><input id="seek" type="range" min="0" max="1000" value="0" aria-label="Seek"><span id="du">0:00</span></div>
