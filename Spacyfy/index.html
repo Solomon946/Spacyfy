@@ -10,12 +10,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css" integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg==" crossorigin="anonymous" referrerpolicy="no-referrer">
 <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="glow" id="glow" aria-hidden="true"></div>
+<div class="glow" id="glow" aria-hidden="true"><i></i><i></i></div>
+
 <aside class="side">
-  <div class="brand">Wavelength</div>
+  <div class="brand" id="sb">
+    <svg class="lg" viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lgg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6ee7b7"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect width="40" height="40" rx="11" fill="url(#lgg)"/><g fill="#06130d"><rect class="b" x="9" y="15" width="3.6" height="10" rx="1.8"/><rect class="b" x="15.5" y="9" width="3.6" height="22" rx="1.8"/><rect class="b" x="22" y="12" width="3.6" height="16" rx="1.8"/><rect class="b" x="28.5" y="17" width="3.6" height="6" rx="1.8"/></g></svg>
+    <span>Wavelength</span>
+  </div>
   <nav id="nav" aria-label="Main">
     <button data-v="home">Home</button>
     <button data-v="library">Your library</button>
@@ -26,10 +30,12 @@
     <span id="pls"></span>
     <button data-a="newpl" class="plus">New playlist</button>
   </nav>
-  <div class="foot"><span id="sto"></span><button data-a="wipe" class="lnk">Delete library</button></div>
+  <div class="foot"><span id="sto"></span><button data-a="pal" class="lnk kbd">Command palette (Ctrl/⌘ + K)</button><button data-a="wipe" class="lnk">Delete library</button></div>
 </aside>
+
 <main>
   <header class="top">
+    <div class="brand m" id="mb"></div>
     <input id="q" type="search" placeholder="Search tracks, artists, albums  ( / )" aria-label="Search">
     <span id="net" class="pill" hidden>Offline</span>
     <button class="btn g" id="theme" aria-label="Switch theme">Theme</button>
@@ -38,25 +44,62 @@
   <input id="file" type="file" accept="audio/*,.mp3,.m4a,.aac,.wav,.ogg,.flac,.opus" multiple hidden>
   <section id="view" aria-live="polite"></section>
 </main>
+
 <footer class="bar" id="bar">
-  <div class="now"><div class="cv" id="tc"><div class="ph">♪</div></div><div class="mt"><b id="tt">Nothing playing</b><span id="ta">Pick a track to start</span></div></div>
-  <div class="ctl">
-    <button data-a="shuffle" id="shf" aria-label="Shuffle" aria-pressed="false">Shuffle</button>
-    <button data-a="prev" aria-label="Previous"><i class="fa-solid fa-backward-step"></i></button>
-    <button data-a="play" id="pp" class="pp" aria-label="Play"><i class="fa-solid fa-play"></i></button>
-    <button data-a="next" aria-label="Next"><i class="fa-solid fa-forward-step"></i></button>
-    <button data-a="repeat" id="rep" aria-label="Repeat off">Repeat</button>
+  <div class="now" tabindex="0" role="button" aria-label="Open full-screen player">
+    <div class="cv" id="tc"><div class="ph">♪</div></div>
+    <div class="mt"><b id="tt">Nothing playing</b><span id="ta">Pick a track to start</span></div>
+    <i class="fa-solid fa-chevron-up chev" aria-hidden="true"></i>
   </div>
-  <div class="seekrow"><span id="cu">0:00</span><input id="seek" type="range" min="0" max="1000" value="0" aria-label="Seek"><span id="du">0:00</span></div>
+  <div class="ctl">
+    <button data-a="shuffle" class="shf" aria-label="Shuffle" aria-pressed="false"><i class="fa-solid fa-shuffle"></i></button>
+    <button data-a="prev" aria-label="Previous"><i class="fa-solid fa-backward-step"></i></button>
+    <button data-a="play" class="pp" aria-label="Play"><i class="fa-solid fa-play"></i></button>
+    <button data-a="next" aria-label="Next"><i class="fa-solid fa-forward-step"></i></button>
+    <button data-a="repeat" class="rep" aria-label="Loop off" aria-pressed="false"><i class="fa-solid fa-repeat"></i></button>
+  </div>
+  <div class="seekrow"><span class="cu">0:00</span>
+    <div class="sk"><input type="range" min="0" max="1000" value="0" aria-label="Seek"><i class="f"></i><i class="th"></i><b class="tip"></b></div>
+    <span class="du">0:00</span></div>
   <div class="vol">
     <button data-a="mute" id="mt" aria-label="Mute">Vol</button>
     <input id="vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="Volume">
     <select id="spd" aria-label="Playback speed"><option>0.75</option><option selected>1</option><option>1.25</option><option>1.5</option></select>
   </div>
 </footer>
+
+<section class="fs" id="fs" aria-hidden="true" role="dialog" aria-label="Now playing">
+  <div class="fsbg" id="fsbg"></div>
+  <header class="fst">
+    <button data-a="close" aria-label="Close player"><i class="fa-solid fa-chevron-down"></i></button>
+    <small>Now playing</small>
+    <button data-a="lyr" id="lyb" aria-label="Show lyrics"><i class="fa-solid fa-quote-left"></i></button>
+  </header>
+  <div class="fsb">
+    <div class="fsl">
+      <div class="art" id="fa"><div class="ph">♪</div></div>
+      <div class="fmeta">
+        <div class="mt"><b id="ft">Nothing playing</b><span id="fr"></span></div>
+        <button data-a="ffav" class="lk" aria-label="Like"><i class="fa-solid fa-heart"></i></button>
+      </div>
+      <div class="seekrow"><span class="cu">0:00</span>
+        <div class="sk"><input type="range" min="0" max="1000" value="0" aria-label="Seek"><i class="f"></i><i class="th"></i><b class="tip"></b></div>
+        <span class="du">0:00</span></div>
+      <div class="fctl">
+        <button data-a="shuffle" class="shf" aria-label="Shuffle" aria-pressed="false"><i class="fa-solid fa-shuffle"></i></button>
+        <button data-a="prev" aria-label="Previous"><i class="fa-solid fa-backward-step"></i></button>
+        <button data-a="play" class="pp" aria-label="Play"><i class="fa-solid fa-play"></i></button>
+        <button data-a="next" aria-label="Next"><i class="fa-solid fa-forward-step"></i></button>
+        <button data-a="repeat" class="rep" aria-label="Loop off" aria-pressed="false"><i class="fa-solid fa-repeat"></i></button>
+      </div>
+      <div class="fx"><span id="up" class="mut"></span><button data-a="paste" class="chip">Add or edit lyrics</button></div>
+    </div>
+    <div class="lyr" id="ly" aria-live="polite"></div>
+  </div>
+</section>
+
 <dialog id="dlg"></dialog>
 <div id="toast" role="status"></div>
-<script src="js/app.js" defer></script>
-<!-- <script src="sw.js" defer></script> -->
+<script src="app.js" defer></script>
 </body>
 </html>
