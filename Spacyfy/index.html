@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Wavelength</title>
+<meta name="theme-color" content="#0d0f10">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="glow" id="glow" aria-hidden="true"></div>
+<aside class="side">
+  <div class="brand">Wavelength</div>
+  <nav id="nav" aria-label="Main">
+    <button data-v="home">Home</button>
+    <button data-v="library">Your library</button>
+    <button data-v="liked">Liked songs</button>
+    <button data-v="recent">Recently played</button>
+    <button data-v="most">Most played</button>
+    <button data-v="queue">Queue</button>
+    <span id="pls"></span>
+    <button data-a="newpl" class="plus">New playlist</button>
+  </nav>
+  <div class="foot"><span id="sto"></span><button data-a="wipe" class="lnk">Delete library</button></div>
+</aside>
+<main>
+  <header class="top">
+    <input id="q" type="search" placeholder="Search tracks, artists, albums  ( / )" aria-label="Search">
+    <span id="net" class="pill" hidden>Offline</span>
+    <button class="btn g" id="theme" aria-label="Switch theme">Theme</button>
+    <button class="btn" data-a="import">Import music</button>
+  </header>
+  <input id="file" type="file" accept="audio/*,.mp3,.m4a,.aac,.wav,.ogg,.flac,.opus" multiple hidden>
+  <section id="view" aria-live="polite"></section>
+</main>
+<footer class="bar" id="bar">
+  <div class="now"><div class="cv" id="tc"><div class="ph">♪</div></div><div class="mt"><b id="tt">Nothing playing</b><span id="ta">Pick a track to start</span></div></div>
+  <div class="ctl">
+    <button data-a="shuffle" id="shf" aria-label="Shuffle" aria-pressed="false">Shuffle</button>
+    <button data-a="prev" aria-label="Previous">⏮</button>
+    <button data-a="play" id="pp" class="pp" aria-label="Play">▶</button>
+    <button data-a="next" aria-label="Next">⏭</button>
+    <button data-a="repeat" id="rep" aria-label="Repeat off">Repeat</button>
+  </div>
+  <div class="seekrow"><span id="cu">0:00</span><input id="seek" type="range" min="0" max="1000" value="0" aria-label="Seek"><span id="du">0:00</span></div>
+  <div class="vol">
+    <button data-a="mute" id="mt" aria-label="Mute">Vol</button>
+    <input id="vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="Volume">
+    <select id="spd" aria-label="Playback speed"><option>0.75</option><option selected>1</option><option>1.25</option><option>1.5</option></select>
+  </div>
+</footer>
+<dialog id="dlg"></dialog>
+<div id="toast" role="status"></div>
+<script src="app.js" defer></script>
+<script src="sw.js" defer></script>
+</body>
+</html>
